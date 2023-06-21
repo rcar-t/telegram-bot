@@ -4,8 +4,6 @@ import requests
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 
-import controller
-
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
@@ -25,6 +23,7 @@ async def get_joke(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def start_bot():
+    logging.DEBUG("starting bot")
     application = ApplicationBuilder().token(os.getenv("TELEGRAM_TOKEN")).build()
     
     start_handler = CommandHandler('start', start)
@@ -34,7 +33,3 @@ def start_bot():
     application.add_handler(joke_handler)
     
     application.run_polling()
-    
-
-if __name__ == '__main__':
-    start_bot()
