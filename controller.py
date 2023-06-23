@@ -26,9 +26,9 @@ async def send_message():
         response.status_code = 200
     return response
 
-def initialise_endpoint(): 
-    app.run(debug=True)
-
 def get_error_response(): 
     return jsonify(body="400 Bad Request. Message not defined.",
                    schema="{'message': 'compulsory','message_format': 'optional',chat_id': 'optional'}")
+
+if __name__ == '__main__':
+    app.run(debug=True)

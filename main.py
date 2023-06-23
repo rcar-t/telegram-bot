@@ -1,15 +1,15 @@
 import asyncio
 from dotenv import load_dotenv
+from threading import Thread
 
 import controller
 import telegram_bot
 from telegram_broadcast import initiate_cat_health_subscription
 
-def main():
-    load_dotenv()
-    telegram_bot.start_bot()
-    asyncio.run(initiate_cat_health_subscription())
-    controller.initialise_endpoint()
-
 if __name__ == '__main__':
-    main()
+    load_dotenv()
+    initiate_cat_health_subscription()
+    # Thread(target = initiate_cat_health_subscription).start()
+    # Thread(target = controller.initialise_endpoint).start()
+    # Thread(target = telegram_bot.start_bot).start()
+
